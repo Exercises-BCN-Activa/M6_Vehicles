@@ -1,4 +1,4 @@
-package com.vehicles.project;
+package com.vehicles.domain;
 
 import java.util.List;
 
@@ -25,6 +25,26 @@ public class Car extends Vehicle {
 
 		this.wheels.add(leftWheel);
 		this.wheels.add(rightWheel);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CAR [");
+		builder.append("Plate: ");
+		builder.append(plate);
+		builder.append(", Brand: ");
+		builder.append(brand);
+		builder.append(", Color: ");
+		builder.append(color);
+		if (!this.wheels.isEmpty()) {
+			builder.append(",\n     Front ");
+			builder.append(wheels.get(1));
+			builder.append(",\n     Back ");
+			builder.append(wheels.get(3));
+		}
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.vehicles.project;
+package com.vehicles.domain;
 
 public class Bike extends Vehicle {
 

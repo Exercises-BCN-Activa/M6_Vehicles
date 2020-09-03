@@ -1,4 +1,4 @@
-package com.vehicles.project;
+package com.vehicles.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,5 +14,21 @@ public abstract class Vehicle {
 		this.plate = plate;
 		this.brand = brand;
 		this.color = color;
+	}
+
+	public String getPlate() {
+		return plate;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public List<Wheel> getWheels() {
+		return wheels;
 	}
 }
