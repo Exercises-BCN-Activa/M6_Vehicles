@@ -8,8 +8,11 @@ public class Main {
 
 	public static void main(String[] args) throws Exception {
 		
-		controler.createNewCar();
-		controler.showDetailsVehicles();
+//		controler.createNewVehicle();
+//		controler.createNewVehicle();
+//		controler.showDetailsVehicles();
+		
+		controler.wantToDo();
 		
 
 	}

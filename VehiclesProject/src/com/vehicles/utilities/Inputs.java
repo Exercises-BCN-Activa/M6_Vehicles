@@ -1,11 +1,6 @@
 package com.vehicles.utilities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
-
-import com.vehicles.domain.Wheel;
 
 public class Inputs {
 	
@@ -14,7 +9,7 @@ public class Inputs {
 		
 		do {
 			userInput = JOptionPane.showInputDialog(msg);
-		} while (!userInput.matches("\\w+"));
+		} while (!userInput.matches("\\w+\\s?\\w*"));
 		
 		userInput = toTitleCase(userInput);
 		
@@ -47,19 +42,8 @@ public class Inputs {
 		return convertedDiameter; 
 	}
 	
-	public static List<Wheel> WheelsFactory(String FrontOrBack) {
-		
-		String brand = returnString("Quina marca de rodes "+ FrontOrBack + "?");
-		double diameter = returnDiameter("Quin és el diàmetre de la roda "+ FrontOrBack + "?");
-		
-		Wheel frontWheel = new Wheel(brand, diameter);
-		
-		List<Wheel> listOfTwoSameWheels = new ArrayList<Wheel>();
-		
-		listOfTwoSameWheels.add(frontWheel);
-		listOfTwoSameWheels.add(frontWheel);
-		
-		return listOfTwoSameWheels;
+	public static void showMessage(String msg) {
+		JOptionPane.showMessageDialog(null, msg);
 	}
 	
 	public static String toTitleCase(String input) {
