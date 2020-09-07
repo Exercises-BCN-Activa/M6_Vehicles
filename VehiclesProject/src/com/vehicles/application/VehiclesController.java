@@ -13,7 +13,7 @@ public class VehiclesController {
 	public VehiclesController() {}
 	
 	public void createNewCar() throws Exception {
-		String plate = Inputs.returnString("Quina és la matrícula del teu cotxe?");
+		String plate = Inputs.returnPlate("Quina és la matrícula del teu cotxe?");
 		String brand = Inputs.returnString("Quina és la marca del teu cotxe?");
 		String color = Inputs.returnString("Quin és el color del teu cotxe?");
 		Car car = new Car(plate, brand, color);
