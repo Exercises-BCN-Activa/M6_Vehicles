@@ -17,12 +17,15 @@ public final class VehiclesFactory {
 	 * @throws Exception: this method requires a plate, brand, 
 	 * color and two lists of two wheels (object of the wheel class) each
 	 */
-	static protected Car createNewCar() throws Exception {
-		String plate = Inputs.returnPlate("Quina és la matrícula del teu cotxe?");
-		String brand = Inputs.returnString("Quina és la marca del teu cotxe?");
-		String color = Inputs.returnString("Quin és el color del teu cotxe?");
+	static protected Car createNewCar(String plate, String brand, String color) throws Exception {
 		Car car = new Car(plate, brand, color);
-		car.addWheels(wheelsFactory("davantera"), wheelsFactory("darrere"));
+		List<Wheel> davantera = wheelsFactory("davantera");
+		if (!davantera.isEmpty()) {
+			List<Wheel> darrere = wheelsFactory("darrere");
+			if (!darrere.isEmpty()) {
+				car.addWheels(davantera, darrere);
+			}
+		}
 		return car;
 	}
 	
@@ -32,12 +35,12 @@ public final class VehiclesFactory {
 	 * @throws Exception: this method requires a plate, brand, 
 	 * color and one lists of two wheels (object of the wheel class)
 	 */
-	static protected Bike createNewBike() throws Exception {
-		String plate = Inputs.returnPlate("Quina és la matrícula de la teva moto?");
-		String brand = Inputs.returnString("Quina és la marca la teva moto?");
-		String color = Inputs.returnString("Quin és el color la teva moto?");
+	static protected Bike createNewBike(String plate, String brand, String color) throws Exception {
 		Bike bike = new Bike(plate, brand, color);
-		bike.addWheels(wheelsFactory("davantera i darrere"));
+		List<Wheel> davanteraIdarrere = wheelsFactory("davantera i darrere");
+		if (!davanteraIdarrere.isEmpty()) {
+			bike.addWheels(davanteraIdarrere);			
+		}
 		return bike;
 	}
 	
@@ -50,16 +53,18 @@ public final class VehiclesFactory {
 	 */
 	private static List<Wheel> wheelsFactory(String FrontOrBack) {
 		
-		String brand = Inputs.returnString("Quina marca de rodes "+ FrontOrBack + "?");
-		double diameter = Inputs.returnDiameter("Quin és el diàmetre de la roda "+ FrontOrBack + "?");
-		
-		Wheel wheel = new Wheel(brand, diameter);
-		
 		List<Wheel> listOfTwoSameWheels = new ArrayList<Wheel>();
 		
-		listOfTwoSameWheels.add(wheel);
-		listOfTwoSameWheels.add(wheel);
-		
+		String brand = Inputs.returnString("Quina marca de rodes "+ FrontOrBack + "?");
+		if (brand!="NulL") {
+			double diameter = Inputs.returnDiameter("Quin és el diàmetre de la roda "+ FrontOrBack + "?");
+			if (diameter!=-1.0) {
+				Wheel wheel = new Wheel(brand, diameter);
+				listOfTwoSameWheels.add(wheel);
+				listOfTwoSameWheels.add(wheel);
+			}
+		}
+
 		return listOfTwoSameWheels;
 	}
 

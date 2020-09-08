@@ -49,27 +49,59 @@ public class Car extends Vehicle {
 		this.wheels.add(rightWheel);
 	}
 
+	
 	/**
-	 * overlay of the toString method to improve visualization
+	 * toString method to improve visualization
+	 * @param language: CAT=Catalan, DEFAULT=English
+	 * @return object car in string.
+	 */
+	public String toString(String language) {
+		StringBuilder builder = new StringBuilder();
+		
+		switch (language.toUpperCase()) {
+			case "CAT":
+				builder.append("COTXE:\n");
+				builder.append("Matrícula: ");
+				builder.append(plate);
+				builder.append(",\nMarca: ");
+				builder.append(brand);
+				builder.append(",\nColor: ");
+				builder.append(color);
+				if (!this.wheels.isEmpty()) {
+					builder.append(",\nRodes Davanteres ");
+					builder.append(wheels.get(1).toString("CAT"));
+					builder.append(",\nRodes Posteriors ");
+					builder.append(wheels.get(3).toString("CAT"));
+				}
+				break;
+				
+			default:
+				builder.append("CAR:\n");
+				builder.append("Plate: ");
+				builder.append(plate);
+				builder.append(",\nBrand: ");
+				builder.append(brand);
+				builder.append(",\nColor: ");
+				builder.append(color);
+				if (!this.wheels.isEmpty()) {
+					builder.append(",\nFront Wheels ");
+					builder.append(wheels.get(1).toString("DEFAULT"));
+					builder.append(",\nBack Wheels ");
+					builder.append(wheels.get(3).toString("DEFAULT"));
+				}
+				break;
+		}
+		
+		return builder.toString();
+	}
+
+	/**
+	 * Overlay of the toString method to improve visualization
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("CAR [");
-		builder.append("Plate: ");
-		builder.append(plate);
-		builder.append(", Brand: ");
-		builder.append(brand);
-		builder.append(", Color: ");
-		builder.append(color);
-		if (!this.wheels.isEmpty()) {
-			builder.append(",\n     Front ");
-			builder.append(wheels.get(1));
-			builder.append(",\n     Back ");
-			builder.append(wheels.get(3));
-		}
-		builder.append("]");
-		return builder.toString();
+		return "Car [plate=" + plate + ", brand=" + brand + ", color=" + color + ", wheels=" + wheels + "]";
 	}
+	
 
 }

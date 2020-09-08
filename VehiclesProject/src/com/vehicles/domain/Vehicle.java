@@ -60,4 +60,6 @@ public abstract class Vehicle {
 	public List<Wheel> getWheels() {
 		return wheels;
 	}
+	
+	public abstract String toString(String Language);
 }

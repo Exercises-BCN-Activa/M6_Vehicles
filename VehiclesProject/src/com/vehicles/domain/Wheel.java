@@ -18,19 +18,43 @@ public class Wheel {
 		this.brand = brand;
 		this.diameter = diameter;
 	}
+	
+	/**
+	 * toString method to improve visualization
+	 * @param language: CAT=Catalan, DEFAULT=English
+	 * @return object car in string.
+	 */
+	public String toString(String language) {
+		StringBuilder builder = new StringBuilder();
+		
+		switch (language.toUpperCase()) {
+			case "CAT":
+				builder.append("(Marca: ");
+				builder.append(brand);
+				builder.append(", Diàmetre: ");
+				builder.append(diameter);
+				builder.append(")");
+				break;
+				
+			default:
+				builder.append("(Brand: ");
+				builder.append(brand);
+				builder.append(", Diameter: ");
+				builder.append(diameter);
+				builder.append(")");
+				break;
+		}
+		
+		return builder.toString();
+	}
 
 	/**
-	 * overlay of the toString method to improve visualization
+	 * Overlay of the toString method to improve visualization
 	 */
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Wheel (");
-		builder.append("brand: ");
-		builder.append(brand);
-		builder.append(", diameter: ");
-		builder.append(diameter);
-		builder.append(")");
-		return builder.toString();
+		return "Wheel [brand=" + brand + ", diameter=" + diameter + "]";
 	}
+
+	
 }

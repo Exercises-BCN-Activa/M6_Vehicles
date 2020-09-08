@@ -24,7 +24,7 @@ public class Inputs {
 			
 			userInput = toTitleCase(userInput);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Inputing canceled by user");
 			userInput = "NulL";
 		}
 		
@@ -58,7 +58,7 @@ public class Inputs {
 			userPlate = userPlate.toUpperCase().replaceAll("\\s", "");
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Inputing canceled by user");
 			userPlate = "NulL";
 		}
 		
@@ -93,7 +93,7 @@ public class Inputs {
 			convertedDiameter = Double.parseDouble(userDiameter);
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("Inputing canceled by user");
 			convertedDiameter = -1.0;
 		}
 		
@@ -104,11 +104,23 @@ public class Inputs {
 	/**
 	 * Method that invokes JOptionPane Class 
 	 * to jump a window that shows users a message 
-	 * 
 	 * @param msg: string you want the user to be notified of
 	 */
 	public static void showMessage(String msg) {
 		JOptionPane.showMessageDialog(null, msg);
+	}
+	
+	/**
+	 * method that uses JOptionPane Class to pop up a 
+	 * confirmation window with a yes, no and cancel options
+	 * @param msg string with text that should appear in the confirmation
+	 * @return int: 0=yes, 1=no, 2=cancel
+	 */
+	public static int confirmationMessage(String msg) {
+		int confirmation = JOptionPane.showConfirmDialog(null,
+                msg, "Confirmeu la informació del vehicle",JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		return confirmation;
 	}
 	
 	/**

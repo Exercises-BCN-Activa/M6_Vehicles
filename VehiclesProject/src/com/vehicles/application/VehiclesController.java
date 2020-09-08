@@ -45,7 +45,7 @@ public final class VehiclesController {
 				break;
 				
 			case 'N':
-				Inputs.showMessage("Gràcies per utilitzar el nostre sistema.");
+				// Inputing canceled by users
 				break;
 				
 			default:
@@ -66,7 +66,7 @@ public final class VehiclesController {
 	 * performed by the VehiclesFactory class
 	 */
 	public void createNewVehicle() throws Exception {
-		String whicheOne;
+		String whicheOne, plate, brand, color;
 		
 		do {
 			whicheOne = Inputs.returnString("Quin tipus de vehicle voleu matricular,\nCotxe o Moto? [C, M]").toUpperCase();
@@ -74,11 +74,51 @@ public final class VehiclesController {
 		
 		switch (whicheOne.charAt(0)) {
 			case 'C':
-				repository.addVehicle(VehiclesFactory.createNewCar());
+				plate = Inputs.returnPlate("Quina és la matrícula del teu cotxe?");
+				if (plate!="NulL") {
+					brand = Inputs.returnString("Quina és la marca del teu cotxe?");
+					if (brand!="NulL") {
+						color = Inputs.returnString("Quin és el color del teu cotxe?");
+						if (color!="NulL") {
+							Vehicle car = VehiclesFactory.createNewCar(plate, brand, color);
+							if (!car.getWheels().isEmpty()) {
+								if (Inputs.confirmationMessage(car.toString("CAT"))==0) {
+									repository.addVehicle(car);
+									Inputs.showMessage("Vehicle registrat amb èxit!\n" + car.toString("CAT"));
+								} else {
+									Inputs.showMessage("No s'ha registrat el vehicle.");
+								}
+							}						
+						}
+					}
+				}
 				break;
+				
 			case 'M':
-				repository.addVehicle(VehiclesFactory.createNewBike());
+				plate = Inputs.returnPlate("Quina és la matrícula de la teva moto?");
+				if (plate!="NulL") {
+					brand = Inputs.returnString("Quina és la marca la teva moto?");
+					if (brand!="NulL") {
+						color = Inputs.returnString("Quin és el color la teva moto?");
+						if (color!="NulL") {
+							Vehicle bike = VehiclesFactory.createNewBike(plate, brand, color);
+							if (!bike.getWheels().isEmpty()) {
+								if (Inputs.confirmationMessage(bike.toString("CAT"))==0) {
+									repository.addVehicle(bike);
+									Inputs.showMessage("Vehicle registrat amb èxit!\n" + bike.toString("CAT"));
+								} else {
+									Inputs.showMessage("No s'ha registrat el vehicle.");
+								}						
+							}						
+						}
+					}
+				}
 				break;
+
+			case 'N':
+				// Inputing canceled by users
+				break;
+				
 			default:
 				Inputs.showMessage("ERROR! Opció no identificada: " + whicheOne);
 		}
@@ -94,7 +134,7 @@ public final class VehiclesController {
 			
 			Iterator<Vehicle> it = repository.getAllVehicles().iterator();
 			while (it.hasNext()) {
-				System.out.println(it.next().toString());
+				System.out.println(it.next().toString("CAT"));
 			}
 			
 		} else {
