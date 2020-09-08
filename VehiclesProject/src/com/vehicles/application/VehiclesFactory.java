@@ -11,6 +11,12 @@ import com.vehicles.utilities.Inputs;
 
 public final class VehiclesFactory {
 	
+	/**
+	 * Constructor method of a car object
+	 * @return Car Class Object
+	 * @throws Exception: this method requires a plate, brand, 
+	 * color and two lists of two wheels (object of the wheel class) each
+	 */
 	static protected Car createNewCar() throws Exception {
 		String plate = Inputs.returnPlate("Quina és la matrícula del teu cotxe?");
 		String brand = Inputs.returnString("Quina és la marca del teu cotxe?");
@@ -20,6 +26,12 @@ public final class VehiclesFactory {
 		return car;
 	}
 	
+	/**
+	 * Constructor method of a bike object
+	 * @return Bike Class Object
+	 * @throws Exception: this method requires a plate, brand, 
+	 * color and one lists of two wheels (object of the wheel class)
+	 */
 	static protected Bike createNewBike() throws Exception {
 		String plate = Inputs.returnPlate("Quina és la matrícula de la teva moto?");
 		String brand = Inputs.returnString("Quina és la marca la teva moto?");
@@ -29,6 +41,13 @@ public final class VehiclesFactory {
 		return bike;
 	}
 	
+	/**
+	 * Constructor method of a wheel object
+	 * @param FrontOrBack: inform whether the rear or 
+	 * front wheels are built in the case of cars or 
+	 * whether they are both in the case of a motorcycle
+	 * @return Wheel object
+	 */
 	private static List<Wheel> wheelsFactory(String FrontOrBack) {
 		
 		String brand = Inputs.returnString("Quina marca de rodes "+ FrontOrBack + "?");
